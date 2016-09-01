@@ -74,6 +74,21 @@ router.get('/newstudent/:name/:house_id/:year/:patronus',
             })
     });
 
+router.get('/patronus/new/:patronus/:name',
+    function(req, res, next){
+        var patronus = req.params.patronus,
+            name = req.params.name;
+        query.updateStudentPatronus(patronus, name)
+            .then(function(){
+                // can also look at js doc to do something other than res.redirect
+                res.redirect('/')
+            })
+            .catch(function(err){
+                return next(err);
+            })
+    }
+);
+
 router.get('/professors', function (req, res, next) {
     query.getAllProfessors()
         .then(function (data) {

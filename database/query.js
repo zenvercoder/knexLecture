@@ -35,6 +35,15 @@ module.exports = {
             year: year,
             patronus: patronus
         })
+    },
+    // second param so you don't change ALL THE patronuses.
+    // now put it in a route handler
+    updateStudentPatronus: function(patronus, name){
+        return Students()
+            .update({
+            patronus: patronus
+            })
+            .where('name', name);
     }
 };
 
